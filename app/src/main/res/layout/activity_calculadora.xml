@@ -7,7 +7,16 @@
     android:layout_height="match_parent"
     tools:context="com.astememe.calculadorabobesponjadollar.Calculadora">
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cardview_dark_background"
+        >
+
+    </View>
     <TableLayout
+        android:id="@+id/calculator"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +28,7 @@
         <TableRow
             >
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/BotonBorrar"
+                android:id="@+id/boton_borrar"
                 style="@style/BotonPersonalizado"
                 android:layout_width="52dp"
                 android:layout_height="52dp"
@@ -32,6 +41,31 @@
                 >
 
             </com.google.android.material.button.MaterialButton>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nuke"
+                style="@style/BotonPersonalizado"
+                android:backgroundTint="@color/md_theme_secondary"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AC" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/symbol_percent"
+                android:backgroundTint="@color/md_theme_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/BotonPersonalizado"
+                android:text="%" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/symbol_plus"
+                style="@style/BotonPersonalizado"
+                android:backgroundTint="@color/md_theme_tertiary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+" />
         </TableRow>
 
 
@@ -66,11 +100,12 @@
                 />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/symbol_plus"
+                android:id="@+id/symbol_minus"
+                android:backgroundTint="@color/md_theme_tertiary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/BotonPersonalizado"
-                android:text="+"
+                android:text="-"
                 />
 
 
@@ -105,11 +140,12 @@
                 />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/symbol_minus"
+                android:id="@+id/symbol_multi"
+                android:backgroundTint="@color/md_theme_tertiary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/BotonPersonalizado"
-                android:text="-"
+                android:text="×"
                 />
         </TableRow>
 
@@ -142,11 +178,12 @@
                 />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/symbol_multi"
+                android:id="@+id/symbol_div"
+                android:backgroundTint="@color/md_theme_tertiary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/BotonPersonalizado"
-                android:text="×" />
+                android:text="÷" />
         </TableRow>
 
         <TableRow
@@ -167,25 +204,39 @@
 
             <com.google.android.material.button.MaterialButton
                 style="@style/BotonPersonalizado"
-                android:id="@+id/button14"
+                android:id="@+id/num0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
                 />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button16"
+                android:id="@+id/symbol_equal"
+                android:backgroundTint="@color/md_theme_inversePrimary"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/BotonPersonalizado"
-                android:text="%" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button15"
-                android:layout_width="wrap_content"
+                android:layout_span="2"
                 android:layout_height="wrap_content"
                 style="@style/BotonPersonalizado"
                 android:text="=" />
         </TableRow>
     </TableLayout>
+
+    <TextView
+        android:id="@+id/cajaresultado"
+        android:paddingRight="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_inverseSurface"
+        android:hint="0"
+        android:textColorHint="@color/md_theme_onPrimary"
+        android:textColor="@color/md_theme_onPrimary"
+        android:textSize="60dp"
+        app:layout_constraintBottom_toTopOf="@id/calculator"
+        app:layout_constraintLeft_toLeftOf="@id/calculator"
+        app:layout_constraintRight_toRightOf="@id/calculator"
+        android:gravity="end"
+
+        >
+
+    </TextView>
 </androidx.constraintlayout.widget.ConstraintLayout>
