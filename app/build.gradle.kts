@@ -34,6 +34,8 @@ android {
 }
 
 dependencies {
+    implementation("com.github.bumptech.glide:glide:5.0.5")
+    implementation(libs.mathparser.org.mxparser)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
