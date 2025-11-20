@@ -24,6 +24,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Calculadora extends AppCompatActivity {
+
+    MediaPlayer mediaPlayer;
     ImageView esponja;
     String calculo;
     Double resultado;
@@ -62,6 +64,8 @@ public class Calculadora extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.sponkbob);
 
         num_1 = findViewById(R.id.num1);
         num_2 = findViewById(R.id.num2);
@@ -192,11 +196,13 @@ public class Calculadora extends AppCompatActivity {
                     .load("https://i.pinimg.com/564x/02/2a/75/022a75f3f3b099fd5293d0712b6dfe63.jpg")
                     .centerCrop()
                     .into(esponja);
+            mediaPlayer.start();
         }
         else {
             Glide
                     .with(this)
                     .clear(esponja);
+            mediaPlayer.pause();
         }
         return expression.calculate();
     }
