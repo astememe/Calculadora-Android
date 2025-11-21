@@ -18,6 +18,7 @@
 
     <ImageView
         android:id="@+id/esponja"
+        android:elevation="5dp"
         android:layout_width="200dp"
         android:layout_height="200dp"
         app:layout_constraintTop_toTopOf="parent"
