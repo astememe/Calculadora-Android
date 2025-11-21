@@ -29,7 +29,6 @@ public class Calculadora extends AppCompatActivity {
     ImageView esponja;
     String calculo;
     Double resultado;
-    String numero_introducido;
     TextView caja_calculo;
     Button div;
     Button num_1;
@@ -117,7 +116,7 @@ public class Calculadora extends AppCompatActivity {
         esponja = findViewById(R.id.esponja);
 
 
-        calculo = "";
+        calculo = "0";
         resultado = 0.0;
 
         for (Button botonNumerico:botonesNumericos) {
@@ -141,14 +140,14 @@ public class Calculadora extends AppCompatActivity {
         nuke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculo = "";
+                calculo = "0";
                 caja_calculo.setText(calculo);
             }
         });
     }
 
     public void mostrarSimbolo(Button simbolo) {
-        boolean esSimbolo = false;
+        boolean esUltimoSimbolo = false;
         if (simbolo.getText().toString().equals("=")) {
             if (calculo.endsWith(div.getText().toString() + num_0.getText().toString())) {
                 caja_calculo.setText("Undefined");
@@ -162,30 +161,38 @@ public class Calculadora extends AppCompatActivity {
         else {
             for (Button botonCalculo: botonesCalculo) {
                 if (!calculo.isEmpty() && String.valueOf(calculo.charAt(calculo.length()-1)).equals(botonCalculo.getText().toString())) {
-                    esSimbolo = true;
+                    esUltimoSimbolo = true;
                 }
             }
             if (simbolo.getText().toString().equals(borrar.getText().toString())) {
-                calculo = calculo.substring(0, calculo.length()-1);
-                caja_calculo.setText(calculo);
-            }
-            if (!calculo.isEmpty() && !esSimbolo) {
-                caja_calculo.setText(calculo);
-                if (simbolo.getText().toString().equals("%")) {
-                    calculo += "/100*";
+                if (calculo.length() == 1) {
+                    calculo = "0";
+                    caja_calculo.setText(calculo);
                 } else {
+                    calculo = calculo.substring(0, calculo.length()-1);
+                    caja_calculo.setText(calculo);
+                }
+            }
+            if (!calculo.isEmpty() && !esUltimoSimbolo) {
+                caja_calculo.setText(calculo);
+                if (simbolo.getText().toString().equals("%") && !Character.toString(caja_calculo.getText().toString().charAt(caja_calculo.getText().toString().length() - 1)).equals("*")) {
+                    calculo += "/100*";
+                } else if (!simbolo.getText().toString().equals("%")){
                     calculo += simbolo.getText().toString();
                 }
-                numero_introducido = "";
                 caja_calculo.setText(calculo);
             }
         }
     }
 
     public void mostrarNumero(Button numero) {
-        calculo += numero.getText().toString();
-        numero_introducido += numero.getText().toString();
-        caja_calculo.setText(calculo);
+        if (calculo.equals("0")) {
+            calculo = numero.getText().toString();
+            caja_calculo.setText(calculo);
+        } else {
+            calculo += numero.getText().toString();
+            caja_calculo.setText(calculo);
+        }
     }
 
     public double calcular(String calculo) {
